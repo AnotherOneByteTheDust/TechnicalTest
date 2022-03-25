@@ -3,16 +3,22 @@ services:
   db:
     image: postgres
     restart: always
-    environment:
+    environment: 
       POSTGRES_PASSWORD: example
     ports:
       - 5432:5432
     networks:
       - postgres
+    volumes:
+      - ./database/init.d:/docker-entrypoint-initdb.d
   centos:
-    image: centos
+    image: centos/httpd-24-centos7
+    ports:
+      - 8080:8080
     networks:
       - postgres
+    volumes:
+      - ./Sample.csv:/var/www/html/Sample.csv
 networks:
   postgres:
     driver: bridge
