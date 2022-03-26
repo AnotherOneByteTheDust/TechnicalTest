@@ -7,4 +7,28 @@ export class Employee {
 
   @Column()
   first_name: string;
+
+  @Column()
+  second_name: string;
+
+  @Column()
+  company: string;
+
+  @Column()
+  address: string;
+
+  @Column()
+  city: string;
+
+  @Column()
+  state: string;
+
+  @Column()
+  zip: number;
+
+  @Column()
+  email: string;
+
+  @Column()
+  department: string;
 }
