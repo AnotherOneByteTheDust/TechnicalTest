@@ -1,0 +1,2 @@
+### GET all employees
+GET http://localhost:3000/employees
