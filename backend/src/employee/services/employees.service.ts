@@ -14,6 +14,13 @@ export class EmployeesService {
     return this.employeesRepository.find();
   }
 
+  findOne(id: number) {
+    if (!id) {
+      return null;
+    }
+    return this.employeesRepository.findOneBy({ id });
+  }
+
   create(employeeDto: CreateEmployeeDto) {
     return this.employeesRepository.save(employeeDto);
   }
