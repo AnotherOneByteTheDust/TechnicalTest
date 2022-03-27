@@ -1,9 +1,25 @@
 import requests
 import csv 
 import json
+import psycopg2
 
-CSV_URL = 'http://localhost:8080/Sample.csv'
-API = 'http://localhost:3000/employees'
+def insert_employee(employee, connection):
+    cursor = connection.cursor()
+    cursor.execute('''INSERT INTO employee
+                   (first_name, second_name, company, address, city, state, zip, phone1, phone2, email, department)
+                   VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                   ''', employee)
+    connection.commit()
+
+connection = psycopg2.connect(
+    database="xaldigital",
+    user="postgres",
+    password="example",
+    host="localhost",
+    port="5432",
+    )
+
+CSV_URL = "http://localhost:8080/Sample.csv"
 
 with requests.Session() as s:
     download = s.get(CSV_URL)
@@ -12,23 +28,7 @@ with requests.Session() as s:
 
     cr = csv.reader(decoded_content.splitlines(), delimiter=',')
     csv_data = list(cr)
-    employees = []
     
     for row in csv_data[1:]:
-        employee = {
-            "firstname": row[0],
-            "secondname": row[1],
-            "company": row[2],
-            "address": row[3],
-            "city": row[4],
-            "state": row[5],
-            "zip": row[6],
-            "phone1": row[7],
-            "phone2": row[8],
-            "email": row[9],
-            "department": row[10]
-        }
-        employees.append(employee)
-    
-    response = s.post(API, json=employees)
-    print(response.text)
+        employee = tuple(row)
+        insert_employee(employee, connection)

@@ -27,6 +27,12 @@ export class Employee {
   zip: number;
 
   @Column()
+  phone1: string;
+
+  @Column()
+  phone2: string;
+
+  @Column()
   email: string;
 
   @Column()
