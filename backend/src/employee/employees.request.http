@@ -1,2 +1,20 @@
 ### GET all employees
 GET http://localhost:3000/employees
+
+### Create an employee
+POST http://localhost:3000/employees
+content-type: application/json
+
+{
+            "first_name": "Name",
+            "second_name": "Second Name",
+            "company": "Google",
+            "address": "Some place",
+            "city": "A city",
+            "state": "ES",
+            "zip": 12345,
+            "phone1": "123-123-123",
+            "phone2": "123-123-123",
+            "email": "mail@email.com",
+            "department": "Marketing"
+}

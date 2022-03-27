@@ -22,6 +22,12 @@ export class CreateEmployeeDto {
   @IsNumber()
   zip: number;
 
+  @IsString()
+  phone1: string;
+
+  @IsString()
+  phone2: string;
+
   @IsEmail()
   email: string;
 
