@@ -24,4 +24,11 @@ export class EmployeesService {
   create(employeeDto: CreateEmployeeDto) {
     return this.employeesRepository.save(employeeDto);
   }
+
+  delete(id: number) {
+    if (!id) {
+      return null;
+    }
+    return this.employeesRepository.delete({ id });
+  }
 }
