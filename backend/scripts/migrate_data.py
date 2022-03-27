@@ -1,7 +1,10 @@
 import requests
-import csv 
+import csv
 import json
 import psycopg2
+import os
+from dotenv import load_dotenv
+from pathlib import Path
 
 def insert_employee(employee, connection):
     cursor = connection.cursor()
@@ -11,12 +14,16 @@ def insert_employee(employee, connection):
                    ''', employee)
     connection.commit()
 
+basepath = Path()
+path = basepath.cwd() / '../.env'
+load_dotenv(path)
+
 connection = psycopg2.connect(
-    database="xaldigital",
-    user="postgres",
-    password="example",
-    host="localhost",
-    port="5432",
+    database=os.getenv('DB_NAME'),
+    user=os.getenv('DB_USER'),
+    password=os.getenv('DB_PASSWORD'),
+    host=os.getenv('DB_HOST'),
+    port=os.getenv('DB_PORT'),
     )
 
 CSV_URL = "http://localhost:8080/Sample.csv"
@@ -28,7 +35,7 @@ with requests.Session() as s:
 
     cr = csv.reader(decoded_content.splitlines(), delimiter=',')
     csv_data = list(cr)
-    
+
     for row in csv_data[1:]:
         employee = tuple(row)
         insert_employee(employee, connection)
