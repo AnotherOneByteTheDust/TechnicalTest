@@ -19,11 +19,11 @@ path = basepath.cwd() / '../.env'
 load_dotenv(path)
 
 connection = psycopg2.connect(
-    database=os.getenv('DB_NAME'),
-    user=os.getenv('DB_USER'),
-    password=os.getenv('DB_PASSWORD'),
-    host=os.getenv('DB_HOST'),
-    port=os.getenv('DB_PORT'),
+    database=os.getenv('DATABASE_NAME'),
+    user=os.getenv('DATABASE_USER'),
+    password=os.getenv('DATABASE_PASSWORD'),
+    host=os.getenv('DATABASE_HOST'),
+    port=os.getenv('DATABASE_PORT'),
     )
 
 CSV_URL = "http://localhost:8080/Sample.csv"
