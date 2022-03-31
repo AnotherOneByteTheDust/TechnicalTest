@@ -5,36 +5,36 @@ export class Employee {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({ type: 'varchar', length: 50})
   first_name: string;
 
-  @Column()
+  @Column({ type: 'varchar', length: 50})
   second_name: string;
 
-  @Column()
+  @Column({ type: 'varchar', length: 50})
   company: string;
 
-  @Column()
+  @Column({ type: 'varchar', length: 50})
   address: string;
 
-  @Column()
+  @Column({ type: 'varchar', length: 50})
   city: string;
 
-  @Column()
+  @Column({ type: 'char', length: 2})
   state: string;
 
-  @Column()
+  @Column({ type: 'int' })
   zip: number;
 
-  @Column()
+  @Column({ type: 'varchar', length: 50})
   phone1: string;
 
-  @Column()
+  @Column({ type: 'varchar', length: 50})
   phone2: string;
 
-  @Column()
+  @Column({ type: 'varchar', length: 50})
   email: string;
 
-  @Column()
+  @Column({ type: 'varchar', length: 50})
   department: string;
 }
