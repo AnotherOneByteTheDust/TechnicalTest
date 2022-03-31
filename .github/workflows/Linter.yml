@@ -1,0 +1,37 @@
+name: Linter
+
+on: push
+
+jobs:
+  run-linter:
+    name: Run linter
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./backend
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v1 
+        with:
+          node-version: 16.14.2
+      
+      - name: Cache node modules
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: |
+            **/node_modules
+            **/package-lock.json
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-
+          restore-keys: 
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+              
+      - name: Install dependencies
+        run: npm install
+      
+      - name: Run linter
+        run: npm run lint
