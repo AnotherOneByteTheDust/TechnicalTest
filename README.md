@@ -12,7 +12,7 @@ This project was built with:
   
 ## Usage
 
-This project is composed with three parts:
+This project has been created with three parts:
 - Postgresql Database + Centos server
 - API
 - Data migration script
