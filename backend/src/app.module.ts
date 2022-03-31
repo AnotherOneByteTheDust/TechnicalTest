@@ -8,7 +8,7 @@ import { Employee } from './employee/entity/employee.entity';
   imports: [
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'localhost',
+      host: 'xaldigital-db-1',
       username: 'postgres',
       password: 'example',
       database: 'xaldigital',
