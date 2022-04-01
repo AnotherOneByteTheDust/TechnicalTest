@@ -2,7 +2,7 @@
 GET http://localhost:3000/employees
 
 ### GET one employee
-GET http://localhost:3000/employees/1
+GET http://localhost:3000/employees/2
 
 ### Create an employee
 POST http://localhost:3000/employees
@@ -20,6 +20,16 @@ content-type: application/json
             "phone2": "123-123-123",
             "email": "mail@email.com",
             "department": "Marketing"
+}
+
+### Update an employee
+PUT http://localhost:3000/employees/1
+content-type: application/json
+
+{
+            "first_name": "Test Update",
+            "second_name": "Test Update",
+            "zip": 12345
 }
 
 ### Delete an employee by id

@@ -1,7 +1,7 @@
 import { InjectRepository } from '@nestjs/typeorm';
 // import { Injectable, NotFoundException } from '@nestjs/common';
 import { Repository } from 'typeorm';
-import { CreateEmployeeDto } from '../dtos/create-employee.dto';
+import { CreateEmployeeDto, UpdateEmployeeDto } from '../dtos/employee.dto';
 import { Employee } from '../entity/employee.entity';
 
 export class EmployeesService {
@@ -15,9 +15,6 @@ export class EmployeesService {
   }
 
   findOne(id: number) {
-    if (!id) {
-      return null;
-    }
     return this.employeesRepository.findOneBy({ id });
   }
 
@@ -26,9 +23,12 @@ export class EmployeesService {
   }
 
   delete(id: number) {
-    if (!id) {
-      return null;
-    }
     return this.employeesRepository.delete({ id });
+  }
+
+  async update(id: number, employeeDto: UpdateEmployeeDto) {
+    const employee = await this.employeesRepository.findOneBy({ id });
+    this.employeesRepository.merge(employee, employeeDto)
+    return this.employeesRepository.save(employee)
   }
 }

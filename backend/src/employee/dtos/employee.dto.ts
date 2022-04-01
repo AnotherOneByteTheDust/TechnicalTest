@@ -1,4 +1,4 @@
-import { ApiProperty } from '@nestjs/swagger';
+import { ApiProperty, PartialType } from '@nestjs/swagger';
 import { IsEmail, IsNotEmpty, IsNumber, IsString } from 'class-validator';
 
 export class CreateEmployeeDto {
@@ -57,3 +57,5 @@ export class CreateEmployeeDto {
   @ApiProperty({ default: "Marketing" })
   department: string;
 }
+
+export class UpdateEmployeeDto extends PartialType(CreateEmployeeDto) {}
