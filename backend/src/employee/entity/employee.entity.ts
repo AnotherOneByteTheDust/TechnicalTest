@@ -26,10 +26,10 @@ export class Employee {
   @Column({ type: 'int' })
   zip: number;
 
-  @Column({ type: 'varchar', length: 50})
+  @Column({ type: 'varchar', length: 15})
   phone1: string;
 
-  @Column({ type: 'varchar', length: 50})
+  @Column({ type: 'varchar', length: 15})
   phone2: string;
 
   @Column({ type: 'varchar', length: 50})
